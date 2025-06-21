@@ -1,10 +1,5 @@
 package vn.com.iviettech.domain;
 
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-
 public class Account {
     private int id;
     private String name;
