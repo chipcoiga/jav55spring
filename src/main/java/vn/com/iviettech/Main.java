@@ -1,14 +1,11 @@
 package vn.com.iviettech;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import vn.com.iviettech.config.Config;
-import vn.com.iviettech.service.UserService;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@SpringBootApplication
 public class Main {
     public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
-        UserService userService = context.getBean(UserService.class);
-        userService.searchName();
+        SpringApplication.run(Main.class, args);
     }
 }
