@@ -10,5 +10,8 @@ public class Main {
         ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
         UserService userService = context.getBean(UserService.class);
         userService.printSomething();
+
+
+        userService.searchName();
     }
 }
