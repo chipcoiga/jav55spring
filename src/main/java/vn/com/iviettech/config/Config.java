@@ -10,5 +10,5 @@ import vn.com.iviettech.service.UserService;
 @Configuration
 @ComponentScan(basePackages = "vn.com.iviettech")
 public class Config {
-//
+//a
 }
