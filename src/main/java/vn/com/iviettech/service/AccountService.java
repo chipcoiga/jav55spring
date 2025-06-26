@@ -48,13 +48,13 @@ public class AccountService {
 //                    System.out.println("======");
 //                });
 
-//        repository.findAllByNameContainsAndSalaryGreaterThan("", 10000000L)
-//                .forEach(entity -> {
-//            System.out.println(entity.getId());
-//            System.out.println(entity.getName());
-//            System.out.println(entity.getSalary());
-//            System.out.println("======");
-//        });
+        repository.findByNameAndSalary("", 10000000L)
+                .forEach(entity -> {
+            System.out.println(entity.getId());
+            System.out.println(entity.getName());
+            System.out.println(entity.getSalary());
+            System.out.println("======");
+        });
 
 //        repository.findAllByNameContains("4").forEach(entity -> {
 //            System.out.println(entity.getId());

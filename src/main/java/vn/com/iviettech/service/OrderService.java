@@ -42,17 +42,17 @@ public class OrderService {
 //        detail2.setPrice(10000);
 //        detailRepository.save(detail2);
 
-        OrderEntity entity = orderRepository.findById(1).get();
-        System.out.println(entity.getId());
-        System.out.println(entity.getBuyerName());
-        System.out.println(entity.getBuyerPhone());
-        System.out.println(entity.getOrderDetails().size());
-        for (OrderDetailEntity detail : entity.getOrderDetails()) {
-            System.out.println("ID: " + detail.getId());
-            System.out.println("product name: " + detail.getProductName());
-            System.out.println("quantity: " + detail.getQuantity());
-            System.out.println("price: " + detail.getPrice());
-        }
+//        OrderEntity entity = orderRepository.findById(1).get();
+//        System.out.println(entity.getId());
+//        System.out.println(entity.getBuyerName());
+//        System.out.println(entity.getBuyerPhone());
+//        System.out.println(entity.getOrderDetails().size());
+//        for (OrderDetailEntity detail : entity.getOrderDetails()) {
+//            System.out.println("ID: " + detail.getId());
+//            System.out.println("product name: " + detail.getProductName());
+//            System.out.println("quantity: " + detail.getQuantity());
+//            System.out.println("price: " + detail.getPrice());
+//        }
 
 //        OrderDetailEntity detail = detailRepository.findById(1).get();
 //        System.out.println(detail.getProductName());
