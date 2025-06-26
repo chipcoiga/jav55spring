@@ -1,9 +1,14 @@
 package vn.com.iviettech.service;
 
 import jakarta.annotation.PostConstruct;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import vn.com.iviettech.entity.AccountEntity;
 import vn.com.iviettech.repository.AccountRepository;
+
+import java.util.List;
 
 @Service
 public class AccountService {
@@ -20,13 +25,36 @@ public class AccountService {
 
     @PostConstruct
     public void initData() {
-        repository.findAllByNameContainsAndSalaryGreaterThan("", 10000000L)
+        //Pagable with sort
+        Sort sort = Sort.by(Sort.Direction.DESC, "salary", "name");
+        PageRequest pageable = PageRequest.of(0, 4, sort);
+
+        repository.findAllByNameContains("", pageable)
                 .forEach(entity -> {
-            System.out.println(entity.getId());
-            System.out.println(entity.getName());
-            System.out.println(entity.getSalary());
-            System.out.println("======");
-        });
+                    System.out.println(entity.getId());
+                    System.out.println(entity.getName());
+                    System.out.println(entity.getSalary());
+                    System.out.println("======");
+                });
+
+
+        //Pagaable
+//        PageRequest pageable = PageRequest.of(2, 2);
+//        repository.findAllByNameContains("", pageable)
+//                .forEach(entity -> {
+//                    System.out.println(entity.getId());
+//                    System.out.println(entity.getName());
+//                    System.out.println(entity.getSalary());
+//                    System.out.println("======");
+//                });
+
+//        repository.findAllByNameContainsAndSalaryGreaterThan("", 10000000L)
+//                .forEach(entity -> {
+//            System.out.println(entity.getId());
+//            System.out.println(entity.getName());
+//            System.out.println(entity.getSalary());
+//            System.out.println("======");
+//        });
 
 //        repository.findAllByNameContains("4").forEach(entity -> {
 //            System.out.println(entity.getId());
