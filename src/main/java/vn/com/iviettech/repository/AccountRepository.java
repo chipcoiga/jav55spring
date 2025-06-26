@@ -10,4 +10,7 @@ public interface AccountRepository
 
     List<AccountEntity> findAllByNameContains(String text);
     List<AccountEntity> findAllByNameContainsAndSalaryGreaterThan(String text, Long salary);
+    List<AccountEntity> findAllBySalaryBetween(Long minSalary, Long maxSalary);
+    List<AccountEntity> findAllByNameContainingOrNameContaining(String a, String b);
+    long countBySalaryBetween(Long minSalary, Long maxSalary);
 }
