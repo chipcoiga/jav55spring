@@ -26,16 +26,16 @@ public class AccountService {
     @PostConstruct
     public void initData() {
         //Pagable with sort
-        Sort sort = Sort.by(Sort.Direction.DESC, "salary", "name");
-        PageRequest pageable = PageRequest.of(0, 4, sort);
-
-        repository.findAllByNameContains("", pageable)
-                .forEach(entity -> {
-                    System.out.println(entity.getId());
-                    System.out.println(entity.getName());
-                    System.out.println(entity.getSalary());
-                    System.out.println("======");
-                });
+//        Sort sort = Sort.by(Sort.Direction.DESC, "salary", "name");
+//        PageRequest pageable = PageRequest.of(0, 4, sort);
+//
+//        repository.findAllByNameContains("", pageable)
+//                .forEach(entity -> {
+//                    System.out.println(entity.getId());
+//                    System.out.println(entity.getName());
+//                    System.out.println(entity.getSalary());
+//                    System.out.println("======");
+//                });
 
 
         //Pagaable
@@ -85,9 +85,9 @@ public class AccountService {
 //        entity3.setSalary(5000000L);
 //        createAccount(entity3);
 //
-//        AccountEntity entity4 = new AccountEntity();
-//        entity4.setName("Account 4");
-//        entity4.setSalary(50000000L);
-//        createAccount(entity4);
+//        AccountEntity entity5 = new AccountEntity();
+//        entity5.setName("fsdfs@gmail.com");
+//        entity5.setSalary(3000000000L);
+//        createAccount(entity5);
     }
 }

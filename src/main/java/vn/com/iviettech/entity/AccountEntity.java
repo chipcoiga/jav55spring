@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class AccountEntity {
@@ -11,7 +14,11 @@ public class AccountEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Email
     private String name;
+
+    @Min(3500000)
     private Long salary;
 
     public Long getId() {
