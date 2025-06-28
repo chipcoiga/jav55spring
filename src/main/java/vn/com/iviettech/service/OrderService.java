@@ -30,23 +30,23 @@ public class OrderService {
     @PostConstruct
     public void init ( ) {
         // Câu 3
-//        createOrder();
+        createOrder();
 
         // Câu 4
-//        listAllOrders();
+        listAllOrders();
 
         // Câu 5
-//        getOrderById(7);
+        getOrderById(7);
 
         // Câu 6
-//        listOrdersInCurrentMonth();
+        listOrdersInCurrentMonth();
 
         // Câu 7
-//        List<OrderDetail> details = orderDetailRepository.findByUnitPriceGreaterThan(1000.0);
-//        for (OrderDetail detail : details) {
-//            Orders order = detail.getOrder();
-//            System.out.println(order.getCustomerName());
-//        }
+        List<OrderDetail> details = orderDetailRepository.findByUnitPriceGreaterThan(1000.0);
+        for (OrderDetail detail : details) {
+            Orders order = detail.getOrder();
+            System.out.println(order.getCustomerName());
+        }
 
         // Câu 8
         listOrdersBuyJavaBookWithMethod();
