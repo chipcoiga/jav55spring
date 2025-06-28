@@ -14,23 +14,27 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @GetMapping
-    public List<Account> getAllAccounts() {
-        return accountService.getAllAccounts();
+    // Yêu cầu 1
+    @GetMapping("/salary")
+    public List<Account> getAccountsBySalaryRange(
+            @RequestParam Long min,
+            @RequestParam Long max) {
+        return accountService.findAccountsBySalaryRange(min, max);
     }
 
-    @GetMapping("/{username}")
-    public Account getAccountByUsername(@PathVariable String username) {
-        return accountService.getAccountByUsername(username);
+    // Yêu cầu 2
+    @GetMapping("/salary/count")
+    public Long countAccountsBySalaryRange(
+            @RequestParam Long min,
+            @RequestParam Long max) {
+        return accountService.countAccountsBySalaryRange(min, max);
     }
 
-    @PostMapping
-    public Account saveAccount(@RequestBody Account account) {
-        return accountService.saveAccount(account);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteAccount(@PathVariable Long id) {
-        accountService.deleteAccount(id);
+    // Yêu cầu 3
+    @GetMapping("/search")
+    public Account findByNameLike(
+            @RequestParam String name1,
+            @RequestParam String name2) {
+        return accountService.findAccountByNameLike(name1, name2);
     }
 }

@@ -13,19 +13,15 @@ public class AccountService {
     @Autowired
     private AccountRepository accountRepository;
 
-    public List<Account> getAllAccounts() {
-        return accountRepository.findAll();
+    public List<Account> findAccountsBySalaryRange(Long min, Long max) {
+        return accountRepository.findBySalaryBetween(min, max);
     }
 
-    public Account getAccountByUsername(String username) {
-        return accountRepository.findByUsername(username);
+    public Long countAccountsBySalaryRange(Long min, Long max) {
+        return accountRepository.countBySalaryBetween(min, max);
     }
 
-    public Account saveAccount(Account account) {
-        return accountRepository.save(account);
-    }
-
-    public void deleteAccount(Long id) {
-        accountRepository.deleteById(id);
+    public Account findAccountByNameLike(String name1, String name2) {
+        return accountRepository.findFirstByNameContainingOrNameContaining(name1, name2);
     }
 }
