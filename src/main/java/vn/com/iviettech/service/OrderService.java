@@ -1,63 +1,115 @@
 package vn.com.iviettech.service;
 
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vn.com.iviettech.entity.OrderDetailEntity;
 import vn.com.iviettech.entity.OrderEntity;
-import vn.com.iviettech.repository.OrderDetailRepository;
 import vn.com.iviettech.repository.OrderRepository;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
 @Service
+@Transactional
 public class OrderService {
 
-    private final OrderRepository orderRepository;
-    private final OrderDetailRepository detailRepository;
+    @Autowired
+    private OrderRepository orderRepository;
 
-    public OrderService(OrderRepository orderRepository,
-                        OrderDetailRepository detailRepository) {
-        this.orderRepository = orderRepository;
-        this.detailRepository = detailRepository;
+    // 1. Lưu đơn hàng mới
+    public OrderEntity saveOrder(OrderEntity order) {
+        return orderRepository.save(order);
     }
 
-    @Transactional
+    // 2. Lấy tất cả đơn hàng
+    public List<OrderEntity> getAllOrders() {
+        return orderRepository.findAll();
+    }
+
+    // 3. Lấy đơn hàng theo ID
+    public Optional<OrderEntity> getOrderById(Long orderId) {
+        return orderRepository.findById(orderId);
+    }
+
+    // 4. Đơn hàng trong tháng hiện tại
+    public List<OrderEntity> getOrdersInCurrentMonth() {
+        return orderRepository.findOrdersInCurrentMonth();
+    }
+
+    // 5. Đơn hàng có tổng tiền > 1000
+    public List<OrderEntity> getOrdersWithTotalAmountGreaterThan1000() {
+        return orderRepository.findOrdersWithTotalAmountGreaterThan(1000.0);
+    }
+
+    // 6. Đơn hàng có sách Java
+    public List<OrderEntity> getOrdersBuyingJavaBook() {
+        return orderRepository.findOrdersByProductNameContainingIgnoreCase("java");
+    }
+
+    // 7. In tất cả kết quả sau khi thêm dữ liệu mẫu
     @PostConstruct
-    public void init() {
-//        OrderEntity order = new OrderEntity();
-//        order.setBuyerName("Truong");
-//        order.setBuyerPhone("099999999");
-//        orderRepository.save(order);
-//
-//        OrderDetailEntity detail1 = new OrderDetailEntity();
-//        detail1.setOrder(order);
-//        detail1.setProductName("Banh my 45Kg");
-//        detail1.setQuantity(2);
-//        detail1.setPrice(3000000);
-//        detailRepository.save(detail1);
-//
-//        OrderDetailEntity detail2 = new OrderDetailEntity();
-//        detail2.setOrder(order);
-//        detail2.setProductName("Banh my que");
-//        detail2.setQuantity(3);
-//        detail2.setPrice(10000);
-//        detailRepository.save(detail2);
+    public void initSampleData() {
 
-        OrderEntity entity = orderRepository.findById(1).get();
-        System.out.println(entity.getId());
-        System.out.println(entity.getBuyerName());
-        System.out.println(entity.getBuyerPhone());
-        System.out.println(entity.getOrderDetails().size());
-        for (OrderDetailEntity detail : entity.getOrderDetails()) {
-            System.out.println("ID: " + detail.getId());
-            System.out.println("product name: " + detail.getProductName());
-            System.out.println("quantity: " + detail.getQuantity());
-            System.out.println("price: " + detail.getPrice());
-        }
+//        OrderEntity order1 = new OrderEntity("Truong", "truong@example.com");
+//        order1.addOrderDetail(new OrderDetailEntity("Tiên hiệp", 2, 50.0));
+//        order1.addOrderDetail(new OrderDetailEntity("Thư viện kiếm", 1, 80.0));
+//        saveOrder(order1);
+//
+//        OrderEntity order2 = new OrderEntity("Quan", "nguyen@example.com");
+//        order2.addOrderDetail(new OrderDetailEntity("Clean Code", 1, 150.0));
+//        saveOrder(order2);
+//
+//        OrderEntity order3 = new OrderEntity("Dat", "datka@example.com");
+//        order3.addOrderDetail(new OrderDetailEntity("Java Backend Book", 5, 300.0));
+//        saveOrder(order3);
+//        OrderEntity order = new OrderEntity("Data", "datka@example.com");
+//        order.addOrderDetail(new OrderDetailEntity("Java Backend Book", 5, 15846577));
+//        saveOrder(order);
 
-//        OrderDetailEntity detail = detailRepository.findById(1).get();
-//        System.out.println(detail.getProductName());
-//        System.out.println("order: " + detail.getOrder().getId());
-//        System.out.println("order: " + detail.getOrder().getBuyerName());
-//        System.out.println("order: " + detail.getOrder().getBuyerPhone());
+
+
+//        getAllOrders().forEach(order -> {
+//            System.out.println("Order: " + order.getOrderId() + ", Customer: "
+//                    + order.getCustomerName() + ", Email: " + order.getCustomerEmail());
+//            order.getOrderDetails().forEach(detail ->
+//                    System.out.println("  - Product: " + detail.getProductName()
+//                            + ", Quantity: " + detail.getQuantity() + ", Unit Price: "
+//                            + detail.getPrice()));
+//            System.out.println("  Tổng tiền: " + order.getTotalAmount());
+//        });
+
+        //  ID
+//        Long sampleId = order1.getOrderId();
+//        System.out.println(" Lấy đơn hàng theo ID = " + sampleId + " ===");
+//        getOrderById(sampleId).ifPresent(order -> {
+//            System.out.println("Order: " + order.getCustomerName()
+//                    + ", Email: " + order.getCustomerEmail());
+//            System.out.println("Total amount: "
+//                    + order.getTotalAmount());
+//        });
+
+        // motdh
+//        System.out.println(" Đơn hàng trong tháng hiện tại ("
+//                + LocalDate.now().getMonth() + ") ===");
+//        getOrdersInCurrentMonth().forEach(order ->
+//                System.out.println("Order ID: "
+//                        + order.getOrderId() + ", Customer: "
+//                        + order.getCustomerName()));
+
+        //  có tổng tiền > 1000
+//        System.out.println(" Đơn hàng có tổng tiền > 1000 ===");
+//        getOrdersWithTotalAmountGreaterThan1000().forEach(order ->
+//                System.out.println("Order ID: "
+//                        + order.getOrderId() + ", Total: "
+//                        + order.getTotalAmount()));
+//
+        // Đơn hàng mua sách Java
+        System.out.println("Đơn hàng có sản phẩm chứa 'Java' ===");
+        getOrdersBuyingJavaBook().forEach(order -> {
+            System.out.println("Order ID: " + order.getOrderId() + ", Customer: " + order.getCustomerName());
+        });
     }
 }

@@ -3,25 +3,34 @@ package vn.com.iviettech.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "order_details")
 public class OrderDetailEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
+
+    private String productName;
+    private int quantity;
+    private double price;
 
     @ManyToOne
     @JoinColumn(name = "order_id")
     private OrderEntity order;
 
-    private String productName;
-    private int quantity;
-    private int price;
+    public OrderDetailEntity() {}
 
-    public int getId() {
+    public OrderDetailEntity(String productName, int quantity, double price) {
+        this.productName = productName;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -31,6 +40,14 @@ public class OrderDetailEntity {
 
     public void setOrder(OrderEntity order) {
         this.order = order;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public String getProductName() {
@@ -47,13 +64,5 @@ public class OrderDetailEntity {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 }
