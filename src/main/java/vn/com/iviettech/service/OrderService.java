@@ -8,6 +8,9 @@ import vn.com.iviettech.entity.OrderEntity;
 import vn.com.iviettech.repository.OrderDetailRepository;
 import vn.com.iviettech.repository.OrderRepository;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @Service
 public class OrderService {
 
@@ -20,44 +23,46 @@ public class OrderService {
         this.detailRepository = detailRepository;
     }
 
+    public List<OrderEntity> getOrdersThisMonth() {
+        LocalDate now = LocalDate.now();
+        LocalDate start = now.withDayOfMonth(1);
+        LocalDate end = now.withDayOfMonth(now.lengthOfMonth());
+        return orderRepository.findOrdersInDateRange(start, end);
+    }
+
     @Transactional
     @PostConstruct
     public void init() {
-//        OrderEntity order = new OrderEntity();
-//        order.setBuyerName("Truong");
-//        order.setBuyerPhone("099999999");
-//        orderRepository.save(order);
-//
-//        OrderDetailEntity detail1 = new OrderDetailEntity();
-//        detail1.setOrder(order);
-//        detail1.setProductName("Banh my 45Kg");
-//        detail1.setQuantity(2);
-//        detail1.setPrice(3000000);
-//        detailRepository.save(detail1);
-//
-//        OrderDetailEntity detail2 = new OrderDetailEntity();
-//        detail2.setOrder(order);
-//        detail2.setProductName("Banh my que");
-//        detail2.setQuantity(3);
-//        detail2.setPrice(10000);
-//        detailRepository.save(detail2);
+        // Tạo đơn hàng mới
+        OrderEntity order = new OrderEntity();
+        order.setBuyerName("Truong");
+        order.setBuyerPhone("099999999");
+        order.setOrderDate(LocalDate.now()); // nhớ set ngày
+        orderRepository.save(order);
 
-//        OrderEntity entity = orderRepository.findById(1).get();
-//        System.out.println(entity.getId());
-//        System.out.println(entity.getBuyerName());
-//        System.out.println(entity.getBuyerPhone());
-//        System.out.println(entity.getOrderDetails().size());
-//        for (OrderDetailEntity detail : entity.getOrderDetails()) {
-//            System.out.println("ID: " + detail.getId());
-//            System.out.println("product name: " + detail.getProductName());
-//            System.out.println("quantity: " + detail.getQuantity());
-//            System.out.println("price: " + detail.getPrice());
-//        }
+        // Thêm chi tiết đơn hàng
+        OrderDetailEntity detail1 = new OrderDetailEntity();
+        detail1.setOrder(order);
+        detail1.setProductName("Banh my 45Kg");
+        detail1.setQuantity(2);
+        detail1.setPrice(3000000);
+        detailRepository.save(detail1);
 
-//        OrderDetailEntity detail = detailRepository.findById(1).get();
-//        System.out.println(detail.getProductName());
-//        System.out.println("order: " + detail.getOrder().getId());
-//        System.out.println("order: " + detail.getOrder().getBuyerName());
-//        System.out.println("order: " + detail.getOrder().getBuyerPhone());
+        OrderDetailEntity detail2 = new OrderDetailEntity();
+        detail2.setOrder(order);
+        detail2.setProductName("Banh my que");
+        detail2.setQuantity(3);
+        detail2.setPrice(10000);
+        detailRepository.save(detail2);
+
+        OrderEntity entity = orderRepository.findById(order.getId()).get();
+        System.out.println("===> ĐƠN HÀNG: " + entity.getBuyerName() + " - " + entity.getBuyerPhone());
+        for (OrderDetailEntity detail : entity.getOrderDetails()) {
+            System.out.println("  -> " + detail.getProductName() + " x" + detail.getQuantity() + " = " + detail.getPrice());
+        }
+
+        OrderDetailEntity detail = detailRepository.findById(detail1.getId()).get();
+        System.out.println("===> SẢN PHẨM: " + detail.getProductName());
+        System.out.println("    Từ đơn hàng: " + detail.getOrder().getBuyerName());
     }
 }
