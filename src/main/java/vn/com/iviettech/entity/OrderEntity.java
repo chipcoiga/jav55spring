@@ -3,6 +3,7 @@ package vn.com.iviettech.entity;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.time.LocalDate;
 
 @Entity
 public class OrderEntity {
@@ -48,4 +49,16 @@ public class OrderEntity {
     public void setBuyerPhone(String buyerPhone) {
         this.buyerPhone = buyerPhone;
     }
+
+    @Column(name = "order_date")
+    private LocalDate orderDate;
+
+    public LocalDate getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
+    }
+
 }
