@@ -5,11 +5,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import vn.com.iviettech.domain.exception.DemoException;
 import vn.com.iviettech.entity.AccountEntity;
 import vn.com.iviettech.repository.AccountRepository;
 
 import java.util.List;
 
+//@Transactional
 @Service
 public class AccountService {
 
@@ -23,8 +26,25 @@ public class AccountService {
         repository.save(entity);
     }
 
-    @PostConstruct
-    public void initData() {
+    @Transactional(rollbackFor = NumberFormatException.class)
+    public void initData() throws DemoException {
+        long transferMoney = 1000000l;
+
+        AccountEntity account1 = repository.findById(1L).get();
+        account1.setSalary(account1.getSalary() - transferMoney);
+        repository.save(account1);
+
+        AccountEntity account3 = repository.findById(3L).get();
+        account3.setSalary(account3.getSalary() + transferMoney);
+        repository.save(account3);
+        if (3 > 0) {
+            throw new DemoException();
+        }
+//        if (3 > 0) {
+//            throw new NumberFormatException();
+//        }
+
+
         //Pagable with sort
 //        Sort sort = Sort.by(Sort.Direction.DESC, "salary", "name");
 //        PageRequest pageable = PageRequest.of(0, 4, sort);
@@ -47,14 +67,14 @@ public class AccountService {
 //                    System.out.println(entity.getSalary());
 //                    System.out.println("======");
 //                });
-
-        repository.findByNameAndSalary("", 10000000L)
-                .forEach(entity -> {
-            System.out.println(entity.getId());
-            System.out.println(entity.getName());
-            System.out.println(entity.getSalary());
-            System.out.println("======");
-        });
+//
+//        repository.findByNameAndSalary("", 10000000L)
+//                .forEach(entity -> {
+//            System.out.println(entity.getId());
+//            System.out.println(entity.getName());
+//            System.out.println(entity.getSalary());
+//            System.out.println("======");
+//        });
 
 //        repository.findAllByNameContains("4").forEach(entity -> {
 //            System.out.println(entity.getId());

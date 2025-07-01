@@ -15,10 +15,8 @@ public class AccountEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Email
     private String name;
 
-    @Min(3500000)
     private Long salary;
 
     public Long getId() {
