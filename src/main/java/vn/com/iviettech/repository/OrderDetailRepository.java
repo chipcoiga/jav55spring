@@ -1,8 +1,10 @@
 package vn.com.iviettech.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import vn.com.iviettech.entity.OrderDetailEntity;
+import org.springframework.stereotype.Repository;
+import vn.com.iviettech.entity.OrderDetail;
 
-public interface OrderDetailRepository
-        extends JpaRepository<OrderDetailEntity, Integer> {
+@Repository
+public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> {
 }
+
