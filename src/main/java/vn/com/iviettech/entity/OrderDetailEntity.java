@@ -15,7 +15,7 @@ public class OrderDetailEntity {
 
     private String productName;
     private int quantity;
-    private int price;
+    private Double unitPrice;
 
     public int getId() {
         return id;
@@ -49,11 +49,11 @@ public class OrderDetailEntity {
         this.quantity = quantity;
     }
 
-    public int getPrice() {
-        return price;
+    public Double getUnitPrice() {
+        return unitPrice;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
     }
 }

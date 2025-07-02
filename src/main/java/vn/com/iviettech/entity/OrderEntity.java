@@ -2,6 +2,7 @@ package vn.com.iviettech.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -11,11 +12,20 @@ public class OrderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderDetailEntity> orderDetails;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date orderDate ;
+    private String customerName;
+    private String customerAddress;
 
-    private String buyerName;
-    private String buyerPhone;
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public List<OrderDetailEntity> getOrderDetails() {
         return orderDetails;
@@ -25,27 +35,27 @@ public class OrderEntity {
         this.orderDetails = orderDetails;
     }
 
-    public int getId() {
-        return id;
+    public Date getOrderDate() {
+        return orderDate;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 
-    public String getBuyerName() {
-        return buyerName;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setBuyerName(String buyerName) {
-        this.buyerName = buyerName;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public String getBuyerPhone() {
-        return buyerPhone;
+    public String getCustomerAddress() {
+        return customerAddress;
     }
 
-    public void setBuyerPhone(String buyerPhone) {
-        this.buyerPhone = buyerPhone;
+    public void setCustomerAddress(String customerAddress) {
+        this.customerAddress = customerAddress;
     }
 }
