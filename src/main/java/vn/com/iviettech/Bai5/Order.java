@@ -1,0 +1,71 @@
+package vn.com.iviettech.Bai5;
+
+import jakarta.persistence.*;
+
+import java.time.LocalDate;
+import java.util.List;
+
+@Entity
+@Table(name = "orders")
+public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private LocalDate orderDate;
+    private String customerName;
+    private String customerAddress;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderDetail> orderDetails;
+
+    public Order() {
+    }
+
+    public Order(Long id, LocalDate orderDate, String customerName, String customerAddress, List<OrderDetail> orderDetails) {
+        this.id = id;
+        this.orderDate = orderDate;
+        this.customerName = customerName;
+        this.customerAddress = customerAddress;
+        this.orderDetails = orderDetails;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDate getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getCustomerAddress() {
+        return customerAddress;
+    }
+
+    public void setCustomerAddress(String customerAddress) {
+        this.customerAddress = customerAddress;
+    }
+
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
+}
