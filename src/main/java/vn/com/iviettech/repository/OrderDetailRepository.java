@@ -22,4 +22,4 @@ public interface OrderDetailRepository
     @Query("SELECT DISTINCT d.order FROM OrderDetailEntity d WHERE LOWER(d.productName) LIKE %:keyword%")
     List<OrderEntity> findOrdersByProductNameContaining(@Param("keyword") String keyword);
 
-}
+}//.

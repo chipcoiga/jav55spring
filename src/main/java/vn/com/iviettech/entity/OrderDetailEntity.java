@@ -56,4 +56,4 @@ public class OrderDetailEntity {
     public void setUnitPrice(Double unitPrice) {
         this.unitPrice = unitPrice;
     }
-}
+}//.

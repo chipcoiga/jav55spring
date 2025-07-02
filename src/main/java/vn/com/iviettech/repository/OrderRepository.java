@@ -16,4 +16,4 @@ public interface OrderRepository
     @Query("SELECT o FROM OrderEntity o WHERE FUNCTION('MONTH', o.orderDate) = :month AND FUNCTION('YEAR', o.orderDate) = :year")
     List<OrderEntity> findAllByMonthAndYear(@Param("month") int month, @Param("year") int year);
 
-}
+}//.

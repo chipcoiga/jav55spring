@@ -22,4 +22,4 @@ public class OrderTotalDTO{
     public Double getTotalAmount() {
         return totalAmount;
     }
-}
+}//.

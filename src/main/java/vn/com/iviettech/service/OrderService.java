@@ -238,6 +238,6 @@ public class OrderService {
                         detail.getUnitPrice());
             }
         }
-    }//Liệt kê tất cả các đơn hàng mua sách Java
+    }//Liệt kê tất cả các đơn hàng mua sách Java.
 
 }
