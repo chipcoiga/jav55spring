@@ -5,6 +5,6 @@ import vn.com.iviettech.entity.OrderEntity;
 
 import java.util.List;
 
-public interface OrderRepository extends JpaRepository<OrderEntity, Integer > {
-    List<OrderEntity> findByID(Long orderID);
+public interface OrderRepository extends JpaRepository<OrderEntity, Long > {
+    List<OrderEntity> findByorderID(Long orderID);
 }

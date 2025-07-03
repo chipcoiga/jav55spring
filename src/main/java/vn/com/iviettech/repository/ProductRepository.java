@@ -5,8 +5,9 @@ import vn.com.iviettech.entity.ProductEntity;
 
 import java.util.List;
 
-public interface ProductRepository extends JpaRepository<ProductEntity,Integer> {
+public interface ProductRepository extends JpaRepository<ProductEntity,Long> {
 
-    List<ProductEntity> findByCategoryID(Long categoryID);
+    List<ProductEntity> findByCategory_CategoryID(Long categoryID);
+
 
 }

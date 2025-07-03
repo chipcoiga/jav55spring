@@ -1,15 +1,15 @@
 package vn.com.iviettech.entity;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 import java.util.List;
-@Entity
 
+@Entity
 public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer orderID;
+    private Long orderID;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderDetailsEntity> orderDetails;
 
@@ -17,11 +17,11 @@ public class OrderEntity {
     private String name;
     private String customerName;
 
-    public Integer getOrderID() {
+    public Long getOrderID() {
         return orderID;
     }
 
-    public void setOrderID(Integer orderID) {
+    public void setOrderID(Long orderID) {
         this.orderID = orderID;
     }
 

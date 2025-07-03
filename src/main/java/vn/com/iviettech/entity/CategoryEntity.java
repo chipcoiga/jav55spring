@@ -1,24 +1,24 @@
 package vn.com.iviettech.entity;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
-
 public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer categoryID;
+    private Long categoryID;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", cascade = CascadeType.ALL)
     private List<ProductEntity> product;
-    private String  name;
 
-    public Integer getCategoryID() {
+    private String name;
+
+    public Long getCategoryID() {
         return categoryID;
     }
 
-    public void setCategoryID(Integer categoryID) {
+    public void setCategoryID(Long categoryID) {
         this.categoryID = categoryID;
     }
 

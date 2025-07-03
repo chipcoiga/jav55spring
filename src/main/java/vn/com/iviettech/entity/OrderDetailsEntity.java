@@ -1,8 +1,8 @@
 package vn.com.iviettech.entity;
 
 import jakarta.persistence.*;
-@Entity
 
+@Entity
 public class OrderDetailsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
