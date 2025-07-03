@@ -9,4 +9,4 @@ public interface ProductRepository extends JpaRepository<ProductEntity,Integer> 
 
     List<ProductEntity> findByCategoryID(Long categoryID);
 
-}//.
+}

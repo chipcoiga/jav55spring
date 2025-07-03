@@ -65,4 +65,4 @@ public class ProductEntity {
     public void setUnitPrice(Long unitPrice) {
         this.unitPrice = unitPrice;
     }
-}//.
+}

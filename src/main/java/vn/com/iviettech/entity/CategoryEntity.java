@@ -38,4 +38,3 @@ public class CategoryEntity {
         this.name = name;
     }
 }
-//.

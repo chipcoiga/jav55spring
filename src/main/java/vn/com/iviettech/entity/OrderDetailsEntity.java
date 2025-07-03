@@ -49,4 +49,4 @@ public class OrderDetailsEntity {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-}//.
+}
