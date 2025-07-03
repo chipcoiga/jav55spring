@@ -9,9 +9,10 @@ import vn.com.iviettech.service.AccountService;
 @SpringBootApplication
 public class Main {
     public static void main(String[] args) throws DemoException {
-        ConfigurableApplicationContext context = SpringApplication.run(Main.class, args);
-        
-        AccountService accountService = context.getBean(AccountService.class);
-        accountService.initData();
+//        ConfigurableApplicationContext context = SpringApplication.run(Main.class, args);
+//
+//        AccountService accountService = context.getBean(AccountService.class);
+//        accountService.initData();
+        SpringApplication.run(Main.class, args);
     }
 }
