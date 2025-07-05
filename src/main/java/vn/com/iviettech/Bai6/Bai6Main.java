@@ -1,15 +1,12 @@
-package vn.com.iviettech.Bai5;
+package vn.com.iviettech.Bai6;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
-
-import java.time.LocalDate;
 
 @SpringBootApplication
-public class Bai5Main {
+public class Bai6Main {
     public static void main(String[] args) {
-         SpringApplication.run(Bai5Main.class, args);
+         SpringApplication.run(Bai6Main.class, args);
 //
 //        OrderService5 service = context.getBean(OrderService5.class);
 //        Order order = new Order();

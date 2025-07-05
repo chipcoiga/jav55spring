@@ -1,4 +1,4 @@
-package vn.com.iviettech.Bai5;
+package vn.com.iviettech.Bai6;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

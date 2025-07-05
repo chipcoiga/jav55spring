@@ -1,4 +1,4 @@
-package vn.com.iviettech.Bai5;
+package vn.com.iviettech.Bai6;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
