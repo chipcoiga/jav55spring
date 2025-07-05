@@ -20,6 +20,10 @@ public class UserController {
 
     @PostMapping("register")
     public String regisUser(User user) {
+
+        //Call Service save to database
+        //userService.createUser(user);
+
         return "user-information";
     }
 }
