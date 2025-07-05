@@ -2,7 +2,6 @@ package vn.com.iviettech.Bai5;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -40,6 +39,15 @@ public class OrderService {
         return orderRepository.save(order);
     }
     public Order getAllOrderWithOrderDetail(Long id){
-        return orderRepository.findById(id).orElseThrow(()->new RuntimeException("not found"));
+        Order order = orderRepository.findById(id).orElseThrow(()->new RuntimeException("not found"));
+        for(OrderDetail orderDetail: order.getOrderDetails()){
+            System.out.println(orderDetail.getId());
+            System.out.println(orderDetail.getQuantity());
+            System.out.println(orderDetail.getOrder());
+        }
+
+
+        return order;
+
     }
 }

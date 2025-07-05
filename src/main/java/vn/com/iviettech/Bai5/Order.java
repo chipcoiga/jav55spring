@@ -15,7 +15,7 @@ public class Order {
     private String customerName;
     private String customerAddress;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<OrderDetail> orderDetails;
 
     public Order() {
