@@ -17,8 +17,11 @@ public class HomeController {
     //@PutMapping
     //@DeleteMapping
     //@PostMapping
-    @GetMapping("categories")//http://localhost:8080/docs/articles
+    //URI path
+    //http://localhost:8080/docs/categories/1000/products?q=1&name=1&age=1
+    @GetMapping("categories/{categoryId}/products")//http://localhost:8080/docs/categories/3/products
     public String hello(Model model,
+                        @PathVariable("categoryId") long categoryId,
                         @RequestParam("q") String q,
                         @RequestParam("name") String name,
                         @RequestParam(value = "age", defaultValue = "10") String age
@@ -32,6 +35,7 @@ public class HomeController {
         model.addAttribute("username1", name);
         model.addAttribute("username2", age);
         model.addAttribute("showtenkhac", "fsfdf");
+        model.addAttribute("category", categoryId);
 
         return "locle"; //locle.html
     }
