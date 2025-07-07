@@ -1,20 +1,38 @@
-package vn.com.iviettech.domain;
+package vn.com.iviettech.entity;
 
-public class User {
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "users")
+public class UserEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(unique = true, nullable = false)
     private String username;
+
+    @Column(nullable = false)
     private String password;
-    private String rePassword;
+
+    @Column(unique = true, nullable = false)
     private String email;
 
-    public User() {
+    public UserEntity() {
     }
 
-    public User(String username, String password, String rePassword, String email) {
+    public UserEntity(String username, String password, String email) {
         this.username = username;
         this.password = password;
-        this.rePassword = rePassword;
         this.email = email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -31,14 +49,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getRePassword() {
-        return rePassword;
-    }
-
-    public void setRePassword(String rePassword) {
-        this.rePassword = rePassword;
     }
 
     public String getEmail() {
