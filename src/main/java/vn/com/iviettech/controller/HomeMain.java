@@ -1,11 +1,11 @@
-package vn.com.iviettech.Bai3;
+package vn.com.iviettech.controller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BookMain {
+public class HomeMain {
     public static void main(String[] args) {
-        SpringApplication.run(BookMain.class, args);
+        SpringApplication.run(HomeMain.class,args);
     }
 }

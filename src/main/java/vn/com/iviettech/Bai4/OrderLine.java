@@ -1,28 +1,27 @@
-package vn.com.iviettech.Bai6;
+package vn.com.iviettech.Bai4;
 
 import jakarta.persistence.*;
 
 @Entity
-public class OrderDetail {
+public class OrderLine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String item;
+    private Double price;
     private Integer quantity;
+
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+    public OrderLine(){}
 
-    public OrderDetail(){}
-
-    public OrderDetail(Long id, Integer quantity, Order order, Product product) {
+    public OrderLine(Long id, String item, Double price, Integer quantity, Order order) {
         this.id = id;
+        this.item = item;
+        this.price = price;
         this.quantity = quantity;
         this.order = order;
-        this.product = product;
     }
 
     public Long getId() {
@@ -31,6 +30,22 @@ public class OrderDetail {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getItems() {
+        return item;
+    }
+
+    public void setItems(String item) {
+        this.item = item;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public Integer getQuantity() {
@@ -47,13 +62,5 @@ public class OrderDetail {
 
     public void setOrder(Order order) {
         this.order = order;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
     }
 }

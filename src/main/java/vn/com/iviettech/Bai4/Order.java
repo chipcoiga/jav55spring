@@ -1,4 +1,4 @@
-package vn.com.iviettech.Bai6;
+package vn.com.iviettech.Bai4;
 
 import jakarta.persistence.*;
 
@@ -11,22 +11,22 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDate orderDate;
+    private LocalDate creationDate;
     private String customerName;
     private String customerAddress;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<OrderDetail> orderDetails;
 
-    public Order() {
-    }
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<OrderLine> orderLines;
 
-    public Order(Long id, LocalDate orderDate, String customerName, String customerAddress, List<OrderDetail> orderDetails) {
+    public Order(){}
+
+    public Order(Long id, LocalDate creationDate, List<OrderLine> orderLines, String customerName, String customerAddress) {
         this.id = id;
-        this.orderDate = orderDate;
+        this.creationDate = creationDate;
+        this.orderLines = orderLines;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
-        this.orderDetails = orderDetails;
     }
 
     public Long getId() {
@@ -37,12 +37,20 @@ public class Order {
         this.id = id;
     }
 
-    public LocalDate getOrderDate() {
-        return orderDate;
+    public LocalDate getCreationDate() {
+        return creationDate;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
-        this.orderDate = orderDate;
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public List<OrderLine> getOrderLines() {
+        return orderLines;
+    }
+
+    public void setOrderLines(List<OrderLine> orderLines) {
+        this.orderLines = orderLines;
     }
 
     public String getCustomerName() {
@@ -59,13 +67,5 @@ public class Order {
 
     public void setCustomerAddress(String customerAddress) {
         this.customerAddress = customerAddress;
-    }
-
-    public List<OrderDetail> getOrderDetails() {
-        return orderDetails;
-    }
-
-    public void setOrderDetails(List<OrderDetail> orderDetails) {
-        this.orderDetails = orderDetails;
     }
 }
