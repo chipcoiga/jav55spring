@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+<h1>Thông tin đơn hàng</h1>
+<p>Tên khách hàng: <span th:text="${order.customerName}"></span></p>
+<p>Địa chỉ: <span th:text="${order.customerAddress}"></span></p>
+<p>Ngày đặt: <span th:text="${order.orderDate}"></span></p>
+
+<h2>Chi tiết đơn hàng</h2>
+<ul>
+    <li th:each="detail : ${order.orderDetails}">
+        Số lượng: <span th:text="${detail.quantity}"></span>
+    </li>
+</ul>
+</body>
+</html>
