@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Thanh toán</title>
+</head>
+<body>
+<h2>Thanh toán đơn hàng</h2>
+<form th:action="@{/checkout}" method="post">
+  <label>Họ tên:</label>
+  <input type="text" name="name" required /><br/>
+
+  <label>Địa chỉ:</label>
+  <input type="text" name="address" required /><br/>
+
+  <button type="submit">Xác nhận thanh toán</button>
+</form>
+</body>
+</html>
