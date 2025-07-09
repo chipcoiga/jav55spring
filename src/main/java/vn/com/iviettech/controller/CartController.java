@@ -1,6 +1,5 @@
 package vn.com.iviettech.controller;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,14 +16,20 @@ import java.util.Optional;
 @SessionAttributes("cart")
 public class CartController {
 
+    private final CartEntity cartEntity;
+    private final ProductService productService;
+    private final CartService cartService;
 
-    private CartEntity cartEntity;
+    public CartController(CartEntity cartEntity, ProductService productService, CartService cartService) {
+        this.cartEntity = cartEntity;
+        this.productService = productService;
+        this.cartService = cartService;
+    }
 
-
-    private ProductService productService;
-
-
-    private CartService cartService;
+    @ModelAttribute("cart")
+    public CartEntity getCart() {
+        return cartEntity;
+    }
 
     @PostMapping("/cart/add")
     public String addToCart(@RequestParam Long productId,

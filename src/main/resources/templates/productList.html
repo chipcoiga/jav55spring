@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <!-- Search form -->
+
   <form method="get" action="/products" class="mb-4">
     <div class="input-group">
       <input type="text" name="search" class="form-control"
@@ -28,7 +28,7 @@
     </div>
   </form>
 
-  <!-- Messages -->
+
   <div th:if="${message}" class="alert alert-success alert-dismissible fade show">
     <span th:text="${message}"></span>
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
@@ -39,33 +39,33 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
   </div>
 
-  <!-- Products grid -->
+
   <div class="row">
     <div class="col-md-4 mb-4" th:each="product : ${products}">
       <div class="card h-100">
-        <img th:src="@{'/images/' + ${product.imageUrl}}"
-             class="card-img-top" alt="Product Image"
-             style="height: 200px; object-fit: cover;">
+        <!-- ✅ sửa imageUrl -> image -->
+
         <div class="card-body d-flex flex-column">
           <h5 class="card-title" th:text="${product.name}">Product Name</h5>
-          <p class="card-text" th:text="${product.description}">Description</p>
+<!--          <p class="classard-text" th:text="${product.description}">Description</p>-->
           <p class="card-text">
             <strong th:text="${#numbers.formatCurrency(product.price)}">Price</strong>
           </p>
           <p class="card-text">
             <small class="text-muted">
-              Còn lại: <span th:text="${product.stockQuantity}">Stock</span>
+
+              Còn lại: <span th:text="${product.quantity}">Stock</span>
             </small>
           </p>
           <div class="mt-auto">
             <form th:action="@{/cart/add}" method="post" class="d-flex">
               <input type="hidden" name="productId" th:value="${product.id}">
               <input type="number" name="quantity" value="1" min="1"
-                     th:max="${product.stockQuantity}" class="form-control me-2" style="width: 80px;">
+                     th:max="${product.quantity}" class="form-control me-2" style="width: 80px;">
               <button type="submit" class="btn btn-primary flex-fill"
-                      th:disabled="${product.stockQuantity == 0}">
-                <span th:if="${product.stockQuantity > 0}">Thêm vào giỏ</span>
-                <span th:if="${product.stockQuantity == 0}">Hết hàng</span>
+                      th:disabled="${product.quantity == 0}">
+                <span th:if="${product.quantity > 0}">Thêm vào giỏ</span>
+                <span th:if="${product.quantity == 0}">Hết hàng</span>
               </button>
             </form>
           </div>

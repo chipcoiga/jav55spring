@@ -13,7 +13,7 @@ public class CartEntity {
     private List<CartItem> items = new ArrayList<>();
     private Orders order = new Orders();
 
-    // Inner class for cart items
+
     public static class CartItem {
         private Product product;
         private int quantity;
@@ -34,9 +34,9 @@ public class CartEntity {
         }
     }
 
-    // Methods
+
     public void addItem(Product product, int quantity) {
-        // Check if product already exists in cart
+
         for (CartItem item : items) {
             if (item.getProduct().getId().equals(product.getId())) {
                 item.setQuantity(item.getQuantity() + quantity);

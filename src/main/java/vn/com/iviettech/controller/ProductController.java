@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import vn.com.iviettech.entity.Product;
+import vn.com.iviettech.repository.ProductRepository;
 import vn.com.iviettech.service.ProductService;
 
 import java.util.List;
@@ -13,29 +14,26 @@ import java.util.List;
 @Controller
 public class ProductController {
 
-    private final ProductService productService;
+    private final ProductRepository productRepository;
 
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
-
-    @GetMapping("/")
-    public String home() {
-        return "redirect:/products";
+    public ProductController(ProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
     @GetMapping("/products")
-    public String listProducts(Model model, @RequestParam(required = false) String search) {
+    public String showProductList(Model model, @RequestParam(value = "search", required = false) String search) {
         List<Product> products;
 
-        if (search != null && !search.trim().isEmpty()) {
-            products = productService.searchProducts(search);
+        if (search != null && !search.isEmpty()) {
+            products = productRepository.findByNameContainingIgnoreCase(search);
         } else {
-            products = productService.getAllProducts();
+            products = productRepository.findAll();
         }
 
         model.addAttribute("products", products);
         model.addAttribute("search", search);
-        return "productlist";
+
+        return "productList";
     }
 }
+
