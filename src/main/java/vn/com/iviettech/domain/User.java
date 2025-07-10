@@ -1,9 +1,16 @@
 package vn.com.iviettech.domain;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
 public class User {
     private String username;
+
+    @Size(min = 6)
     private String password;
     private String rePassword;
+
+    @NotEmpty
     private String email;
 
     public String getUsername() {
