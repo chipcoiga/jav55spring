@@ -2,50 +2,58 @@ package vn.com.iviettech.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.List;
-
 @Entity
-public class OrderEntity {
 
+public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer orderID;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderDetailsEntity> orderDetails;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
-    private List<OrderDetailEntity> orderDetails;
+    private LocalDate orderDate;
+    private String name;
+    private String customerName;
 
-    private String buyerName;
-    private String buyerPhone;
+    public Integer getOrderID() {
+        return orderID;
+    }
 
-    public List<OrderDetailEntity> getOrderDetails() {
+    public void setOrderID(Integer orderID) {
+        this.orderID = orderID;
+    }
+
+    public List<OrderDetailsEntity> getOrderDetails() {
         return orderDetails;
     }
 
-    public void setOrderDetails(List<OrderDetailEntity> orderDetails) {
+    public void setOrderDetails(List<OrderDetailsEntity> orderDetails) {
         this.orderDetails = orderDetails;
     }
 
-    public int getId() {
-        return id;
+    public LocalDate getOrderDate() {
+        return orderDate;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
     }
 
-    public String getBuyerName() {
-        return buyerName;
+    public String getName() {
+        return name;
     }
 
-    public void setBuyerName(String buyerName) {
-        this.buyerName = buyerName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getBuyerPhone() {
-        return buyerPhone;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setBuyerPhone(String buyerPhone) {
-        this.buyerPhone = buyerPhone;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
-}
+}//.

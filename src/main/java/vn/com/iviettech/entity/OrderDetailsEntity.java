@@ -1,42 +1,45 @@
 package vn.com.iviettech.entity;
 
 import jakarta.persistence.*;
-
 @Entity
 
 public class OrderDetailsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer orderDetailsID;
+
     @ManyToOne
-    @JoinColumn(name = "order_id")
-    private OrdersEntity order;
-    private String productName;
+    @JoinColumn(name = "orderID")
+    private OrderEntity order;
+
+    @ManyToOne
+    @JoinColumn(name = "productID")
+    private ProductEntity product;
+
     private int quantity;
-    private double unitPrice;
 
-    public int getId() {
-        return id;
+    public Integer getOrderDetailsID() {
+        return orderDetailsID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setOrderDetailsID(Integer orderDetailsID) {
+        this.orderDetailsID = orderDetailsID;
     }
 
-    public OrdersEntity getOrder() {
+    public OrderEntity getOrder() {
         return order;
     }
 
-    public void setOrder(OrdersEntity order) {
+    public void setOrder(OrderEntity order) {
         this.order = order;
     }
 
-    public String getProductName() {
-        return productName;
+    public ProductEntity getProduct() {
+        return product;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProduct(ProductEntity product) {
+        this.product = product;
     }
 
     public int getQuantity() {
@@ -46,12 +49,4 @@ public class OrderDetailsEntity {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-    public double getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-}
+}//.
