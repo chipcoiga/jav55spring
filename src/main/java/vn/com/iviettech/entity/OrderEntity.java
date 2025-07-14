@@ -5,17 +5,41 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "Orders")
 public class OrderEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
+    private String customerName;
+    private String address;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderDetailEntity> orderDetails;
 
-    private String buyerName;
-    private String buyerPhone;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public List<OrderDetailEntity> getOrderDetails() {
         return orderDetails;
@@ -23,29 +47,5 @@ public class OrderEntity {
 
     public void setOrderDetails(List<OrderDetailEntity> orderDetails) {
         this.orderDetails = orderDetails;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getBuyerName() {
-        return buyerName;
-    }
-
-    public void setBuyerName(String buyerName) {
-        this.buyerName = buyerName;
-    }
-
-    public String getBuyerPhone() {
-        return buyerPhone;
-    }
-
-    public void setBuyerPhone(String buyerPhone) {
-        this.buyerPhone = buyerPhone;
     }
 }

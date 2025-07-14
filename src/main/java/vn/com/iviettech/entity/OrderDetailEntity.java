@@ -3,42 +3,28 @@ package vn.com.iviettech.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "OrderDetails")
 public class OrderDetailEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
+
+    private int quantity;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private ProductEntity product;
 
     @ManyToOne
     @JoinColumn(name = "order_id")
     private OrderEntity order;
 
-    private String productName;
-    private int quantity;
-    private int price;
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    public OrderEntity getOrder() {
-        return order;
-    }
-
-    public void setOrder(OrderEntity order) {
-        this.order = order;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
     }
 
     public int getQuantity() {
@@ -49,11 +35,19 @@ public class OrderDetailEntity {
         this.quantity = quantity;
     }
 
-    public int getPrice() {
-        return price;
+    public ProductEntity getProduct() {
+        return product;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setProduct(ProductEntity product) {
+        this.product = product;
+    }
+
+    public OrderEntity getOrder() {
+        return order;
+    }
+
+    public void setOrder(OrderEntity order) {
+        this.order = order;
     }
 }
