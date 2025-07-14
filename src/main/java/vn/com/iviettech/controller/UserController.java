@@ -29,21 +29,32 @@ public class UserController {
     }
 
     @PostMapping("register")
-    public String registerUser(@Valid User user, Model model) {
+    public String registerUser(@Valid User user, BindingResult bindingResult, Model model) {
 
+        // Kiểm tra validation errors
+        if (bindingResult.hasErrors()) {
+            return "user-register";
+        }
 
+        // Kiểm tra mật khẩu xác nhận
         if (!userService.validatePasswordMatch(user.getPassword(), user.getRePassword())) {
-            model.addAttribute("error", "Mật khẩu xác nhận không khớp!");
+            bindingResult.rejectValue("rePassword", "password.mismatch", "Mật khẩu xác nhận không khớp!");
             return "user-register";
         }
 
-
-        if (!userService.isValidEmail(user.getEmail())) {
-            model.addAttribute("error", "Email không hợp lệ!");
+        // Kiểm tra email tồn tại
+        if (userService.findByEmail(user.getEmail()).isPresent()) {
+            bindingResult.rejectValue("email", "email.exists", "Email đã tồn tại!");
             return "user-register";
         }
 
+        // Kiểm tra username tồn tại
+        if (userService.findByUsername(user.getUsername()).isPresent()) {
+            bindingResult.rejectValue("username", "username.exists", "Tên đăng nhập đã tồn tại!");
+            return "user-register";
+        }
 
+        // Đăng ký user
         boolean isRegistered = userService.registerUser(user);
 
         if (isRegistered) {
@@ -51,7 +62,7 @@ public class UserController {
             model.addAttribute("user", user);
             return "user-information";
         } else {
-            model.addAttribute("error", "Username hoặc email đã tồn tại!");
+            model.addAttribute("error", "Có lỗi xảy ra trong quá trình đăng ký!");
             return "user-register";
         }
     }

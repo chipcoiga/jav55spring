@@ -54,6 +54,18 @@
             border-color: #667eea;
             box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
         }
+        .form-control.is-invalid {
+            border-color: #dc3545;
+        }
+        .form-control.is-valid {
+            border-color: #28a745;
+        }
+        .invalid-feedback {
+            display: block;
+            font-size: 12px;
+            margin-top: 5px;
+            color: #dc3545;
+        }
         .btn-register {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border: none;
@@ -72,14 +84,6 @@
             border-radius: 8px;
             margin-bottom: 20px;
         }
-        .invalid-feedback {
-            display: block;
-            font-size: 12px;
-            margin-top: 5px;
-        }
-        .form-control.is-invalid {
-            border-color: #dc3545;
-        }
     </style>
 </head>
 <body>
@@ -89,7 +93,7 @@
         <p>Tạo tài khoản mới để bắt đầu</p>
     </div>
 
-    <!-- Hiển thị thông báo lỗi -->
+    <!-- Hiển thị thông báo lỗi chung -->
     <div th:if="${error}" class="alert alert-danger" role="alert">
         <i class="fas fa-exclamation-circle"></i>
         <span th:text="${error}"></span>
@@ -113,7 +117,7 @@
                    th:classappend="${#fields.hasErrors('username')} ? 'is-invalid' : ''"
                    placeholder="Nhập tên đăng nhập">
             <div th:if="${#fields.hasErrors('username')}" class="invalid-feedback">
-                <span th:errors="*{username}"></span>
+                <span th:each="error : ${#fields.errors('username')}" th:text="${error}"></span>
             </div>
         </div>
 
@@ -128,7 +132,7 @@
                    th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ''"
                    placeholder="Nhập địa chỉ email">
             <div th:if="${#fields.hasErrors('email')}" class="invalid-feedback">
-                <span th:errors="*{email}"></span>
+                <span th:each="error : ${#fields.errors('email')}" th:text="${error}"></span>
             </div>
         </div>
 
@@ -143,7 +147,7 @@
                    th:classappend="${#fields.hasErrors('password')} ? 'is-invalid' : ''"
                    placeholder="Nhập mật khẩu">
             <div th:if="${#fields.hasErrors('password')}" class="invalid-feedback">
-                <span th:errors="*{password}"></span>
+                <span th:each="error : ${#fields.errors('password')}" th:text="${error}"></span>
             </div>
         </div>
 
@@ -158,7 +162,7 @@
                    th:classappend="${#fields.hasErrors('rePassword')} ? 'is-invalid' : ''"
                    placeholder="Nhập lại mật khẩu">
             <div th:if="${#fields.hasErrors('rePassword')}" class="invalid-feedback">
-                <span th:errors="*{rePassword}"></span>
+                <span th:each="error : ${#fields.errors('rePassword')}" th:text="${error}"></span>
             </div>
         </div>
 
