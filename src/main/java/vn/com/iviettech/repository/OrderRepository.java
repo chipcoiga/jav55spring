@@ -5,5 +5,5 @@ import vn.com.iviettech.entity.OrderEntity;
 
 public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
 
-}
+}//.
 

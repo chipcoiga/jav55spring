@@ -20,5 +20,5 @@ public class ProductController {
         model.addAttribute("products", productService.getAllProducts());
         return "productList";
     }
-}
+}//.
 

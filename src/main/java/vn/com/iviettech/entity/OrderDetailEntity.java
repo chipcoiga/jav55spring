@@ -50,4 +50,4 @@ public class OrderDetailEntity {
     public void setOrder(OrderEntity order) {
         this.order = order;
     }
-}
+}//.
