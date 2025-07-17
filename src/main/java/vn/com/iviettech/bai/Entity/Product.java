@@ -1,4 +1,4 @@
-package vn.com.iviettech.bai8.Entity;
+package vn.com.iviettech.bai.Entity;
 
 import jakarta.persistence.*;
 

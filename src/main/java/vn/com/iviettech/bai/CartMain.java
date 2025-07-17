@@ -1,4 +1,4 @@
-package vn.com.iviettech.bai8;
+package vn.com.iviettech.bai;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

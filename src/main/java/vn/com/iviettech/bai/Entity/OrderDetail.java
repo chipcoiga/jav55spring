@@ -1,4 +1,4 @@
-package vn.com.iviettech.bai8.Entity;
+package vn.com.iviettech.bai.Entity;
 
 import jakarta.persistence.*;
 
@@ -13,6 +13,7 @@ public class OrderDetail {
 
     @ManyToOne
     @JoinColumn(name = "order_id")
+
     private Order order;
 
     @ManyToOne

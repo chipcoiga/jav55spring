@@ -1,4 +1,4 @@
-package vn.com.iviettech.bai8.Entity;
+package vn.com.iviettech.bai.Entity;
 
 public class CartItem {
     private Product product;
@@ -24,5 +24,8 @@ public class CartItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+    public double getTotalPrice() {
+        return product.getPrice() * quantity;
     }
 }

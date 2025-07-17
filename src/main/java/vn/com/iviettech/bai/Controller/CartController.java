@@ -1,4 +1,4 @@
-package vn.com.iviettech.bai8.Controller;
+package vn.com.iviettech.bai.Controller;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -6,9 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import vn.com.iviettech.bai8.Entity.Cart;
-import vn.com.iviettech.bai8.Entity.Product;
-import vn.com.iviettech.bai8.Service.ProductService;
+import vn.com.iviettech.bai.Entity.Cart;
+import vn.com.iviettech.bai.Entity.Product;
+import vn.com.iviettech.bai.service.ProductService;
 
 @Controller
 @RequestMapping("/cart")

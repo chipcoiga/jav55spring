@@ -1,10 +1,10 @@
-package vn.com.iviettech.bai8.Service;
+package vn.com.iviettech.bai.service;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
-import vn.com.iviettech.bai8.Entity.OrderDetail;
-import vn.com.iviettech.bai8.Entity.Product;
-import vn.com.iviettech.bai8.Repository.ProductRepo;
+import vn.com.iviettech.bai.Entity.OrderDetail;
+import vn.com.iviettech.bai.Entity.Product;
+import vn.com.iviettech.bai.Repository.ProductRepo;
 
 import java.util.ArrayList;
 import java.util.List;

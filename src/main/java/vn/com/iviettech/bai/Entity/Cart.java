@@ -1,5 +1,6 @@
-package vn.com.iviettech.bai8.Entity;
+package vn.com.iviettech.bai.Entity;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +24,14 @@ public class Cart {
         items.clear();
     }
 
-
+    public Collection<CartItem> getItems() {
+        return items.values();
+    }
+    public double getTotalPrice() {
+        return items.values().stream()
+                .mapToDouble(CartItem::getTotalPrice)
+                .sum();
+    }
     public int count() {
         return items.values().stream().mapToInt(CartItem::getQuantity).sum();
     }

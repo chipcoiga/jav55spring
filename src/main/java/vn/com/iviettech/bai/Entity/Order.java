@@ -1,4 +1,4 @@
-package vn.com.iviettech.bai8.Entity;
+package vn.com.iviettech.bai.Entity;
 
 import jakarta.persistence.*;
 
@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
