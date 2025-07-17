@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            margin-left: 35px;
+        }
+
+        input[type="text"], input[type="password"] {
+            display: block;
+            width: 80%;
+            padding: 10px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .password-wrapper {
+            position: relative;
+            width: 80%;
+            margin: 10px auto;
+        }
+
+        .password-wrapper input {
+            width: 100%;
+        }
+
+        .password-wrapper span {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/users/register}" th:object="${user}" method="post">
+    <label for="name">Tên:</label>
+    <input type="text" id="name" th:field="*{name}" required>
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></div>
+
+    <label for="lastName">Họ:</label>
+    <input type="text" id="lastName" th:field="*{lastname}" required>
+    <div th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class="error"></div>
+
+    <label for="password">Mật khẩu:</label>
+    <div class="password-wrapper">
+        <input type="password" id="password" th:field="*{password}" required>
+        <span onclick="togglePassword()">👁</span>
+    </div>
+    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></div>
+
+    <button type="submit">Đăng ký</button>
+</form>
+
+<!-- JavaScript toggle -->
+<script>
+    function togglePassword() {
+        const input = document.getElementById("password");
+        input.type = input.type === "password" ? "text" : "password";
+    }
+</script>
+</body>
+</html>
